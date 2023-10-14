@@ -47,7 +47,7 @@ const ShopAll = () => {
       <BannerTwo />
       <div className="px-16" >
         
-        <div className="max-w-8xl mx-auto px-16 sm:px-6 lg:px-2 py-10 ">
+        <div className="max-w-8xl mx-auto xl-px-16 sm:px-6 lg:px-2 py-10 ">
           <div className="text-center mt-16 mb-8">
             <h2 className="text-6xl font-extrabold text-gray-900">Shop All</h2>
             <p className=" text-2xl text-gray-600 pt-4">

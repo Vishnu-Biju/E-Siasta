@@ -3,10 +3,17 @@ import { Link } from "react-router-dom";
 import { FaShoppingCart, FaUserCircle, FaTimes } from "react-icons/fa";
 import Logo from "../assets/logo1.png";
 import SearchComponent from "./SearchComponent";
+import UserProfile from "./UserProfile";
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [showProfile, setShowProfile] = useState(false);
+
+  const handleProfileToggle = (e) => {
+    e.stopPropagation();
+    setShowProfile(!showProfile);
+  };
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -17,9 +24,22 @@ const NavBar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleMenuToggle = () => {
+  const handleMenuToggle = (e) => {
+    e.stopPropagation();
     setShowMenu(!showMenu);
   };
+
+  useEffect(() => {
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => {
+      document.removeEventListener("click", closeMenu);
+    };
+  }, []);
 
   const isMobile = windowWidth < 600;
   const isOverflowing = windowWidth < 800;
@@ -75,32 +95,29 @@ const NavBar = () => {
 
         {showMenu && (
           <div className="absolute top-16 right-0 z-50 bg-white border rounded mt-2 shadow-lg">
-            <div className="w-full">
+            <div className="w-40 flex flex-col p-4">
+              <div className="flex justify-end cursor-pointer">
+                <FaTimes onClick={handleMenuToggle} />
+              </div>
               <Link
                 to="/"
-                className="text-gray-800 hover:text-pink-500"
+                className="text-gray-800 hover:text-pink-500 block py-2"
                 activeClassName="text-pink-500 font-semibold"
               >
                 HOME
               </Link>
-              <Link to="/aboutus" className="block p-2 hover:bg-gray-100">
+              <Link to="/aboutus" className="block py-2 hover:bg-gray-100">
                 ABOUT US
               </Link>
-              <Link to="/makeup" className="block p-2 hover:bg-gray-100">
+              <Link to="/makeup" className="block py-2 hover:bg-gray-100">
                 MAKEUP
               </Link>
-              <Link to="/shopall" className="block p-2 hover:bg-gray-100">
+              <Link to="/shopall" className="block py-2 hover:bg-gray-100">
                 SHOP ALL
               </Link>
-              <Link to="/howto" className="block p-2 hover:bg-gray-100">
+              <Link to="/howto" className="block py-2 hover:bg-gray-100">
                 HOW TO
               </Link>
-            </div>
-            <div
-              onClick={handleMenuToggle}
-              className="w-full flex justify-end p-2 cursor-pointer"
-            >
-              <FaTimes />
             </div>
           </div>
         )}
@@ -110,8 +127,13 @@ const NavBar = () => {
         <Link to="/cart">
           <FaShoppingCart style={{ fontSize: "24px", color: "#FF69B4" }} />
         </Link>
-        <FaUserCircle style={{ fontSize: "28px" }} className="ml-5" />
+        <FaUserCircle
+    style={{ fontSize: "28px", color: "#4a4a4a", cursor: "pointer" }}
+    className="ml-5"
+    onClick={handleProfileToggle}
+  />
       </div>
+      {showProfile && <UserProfile handleClose={handleProfileToggle} />}
     </div>
   );
 };
