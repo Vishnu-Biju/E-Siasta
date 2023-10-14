@@ -51,3 +51,6 @@ Include some screenshots of your project here.
 ## Acknowledgements
 
 - Give credit to the resources or individuals that helped you in your project.
+
+## Deployment
+- https://siasta-ecommerce.vercel.app/
