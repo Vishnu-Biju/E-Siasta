@@ -34,20 +34,20 @@ const Cart = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-100 pt-16">
+    <div className="flex flex-col bg-gray-100 pt-16">
       <div className="container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-extrabold text-gray-800 my-24">Your Cart</h2>
+        <h2 className="text-3xl font-extrabold text-gray-800 my-8 md:my-24">Your Cart</h2>
         {cartItems && cartItems.length > 0 ? (
           <div>
             {cartItems.map((item, index) => (
-              <div key={index} className="flex p-4 bg-white my-4 rounded-lg shadow-md">
+              <div key={index} className="flex flex-col md:flex-row p-4 bg-white my-4 rounded-lg shadow-md">
                 <img
                   src={item.image || customImages[Math.floor(Math.random() * customImages.length)]}
                   alt={item.name}
-                  className="h-48 w-48 object-cover rounded-lg mr-4"
+                  className="h-48 w-full md:w-48 object-cover rounded-lg mb-4 md:mb-0 md:mr-4"
                   onError={handleImageError}
                 />
-                <div className="flex flex-col justify-between">
+                <div className="flex flex-col justify-between w-full">
                   <div>
                     <h3 className="text-xl font-extrabold text-gray-800">{item.name}</h3>
                     <p className="text-gray-600">Rating: {item.rating}</p>
@@ -65,11 +65,9 @@ const Cart = () => {
                 </div>
               </div>
             ))}
-            <div className="flex justify-end mt-4">
-              <div className="text-xl font-semibold text-gray-800">Total: ${calculateTotal()}</div>
-            </div>
-            <div className="flex justify-end mt-4">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <div className="flex flex-col md:flex-row justify-end items-center mt-4">
+              <div className="text-xl font-semibold text-gray-800 md:mr-4 md:mb-0">Total: ${calculateTotal()}</div>
+              <button className="mt-4 md:mt-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Continue to Payment
               </button>
             </div>
