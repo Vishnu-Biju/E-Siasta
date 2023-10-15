@@ -45,10 +45,10 @@ const NavBar = () => {
   const isOverflowing = windowWidth < 800;
 
   return (
-    <div className="bg-white h-16 mt-8 flex items-center fixed w-full shadow-md z-50">
+    <div className="bg-white h-16 mt-6 sm:mt-8 flex items-center fixed w-full shadow-md z-50">
       <div className="w-1/5 flex items-center justify-center">
-        <img src={Logo} alt="Logo" className="h-10" />
-        <h2 className="pl-3 text-xl md:text-2xl lg:text-3xl font-semibold">
+        <img src={Logo} alt="Logo" className="h-8 sm:h-10" />
+        <h2 className="pl-2 text-sm sm:text-xl md:text-2xl lg:text-3xl font-semibold">
           Siasta
         </h2>
       </div>
@@ -57,37 +57,37 @@ const NavBar = () => {
           <div>
             <Link
               to="/"
-              className="text-gray-800 hover:text-pink-500"
+              className="text-sm sm:text-gray-800 hover:text-pink-500"
               exact="true"
             >
               HOME
             </Link>
             <span>|</span>
             {isOverflowing && (
-              <span onClick={handleMenuToggle} className="cursor-pointer">
+              <span onClick={handleMenuToggle} className="cursor-pointer text-sm">
                 More
               </span>
             )}
           </div>
         ) : (
           <>
-            <Link to="/" className="text-gray-800 hover:text-pink-500">
+            <Link to="/" className="text-sm sm:text-gray-800 hover:text-pink-500">
               HOME
             </Link>
             <span>|</span>
-            <Link to="/aboutus" className="text-gray-800 hover:text-pink-500">
+            <Link to="/aboutus" className="text-sm sm:text-gray-800 hover:text-pink-500">
               ABOUT US
             </Link>
             <span>|</span>
-            <Link to="/makeup" className="text-gray-800 hover:text-pink-500">
+            <Link to="/makeup" className="text-sm sm:text-gray-800 hover:text-pink-500">
               MAKEUP
             </Link>
             <span>|</span>
-            <Link to="/shopall" className="text-gray-800 hover:text-pink-500">
+            <Link to="/shopall" className="text-sm sm:text-gray-800 hover:text-pink-500">
               SHOP ALL
             </Link>
             <span>|</span>
-            <Link to="/howto" className="text-gray-800 hover:text-pink-500">
+            <Link to="/howto" className="text-sm sm:text-gray-800 hover:text-pink-500">
               HOW TO
             </Link>
           </>
@@ -101,7 +101,7 @@ const NavBar = () => {
               </div>
               <Link
                 to="/"
-                className="text-gray-800 hover:text-pink-500 block py-2"
+                className="text-sm sm:text-gray-800 hover:text-pink-500 block py-2"
                 activeClassName="text-pink-500 font-semibold"
               >
                 HOME
@@ -125,13 +125,13 @@ const NavBar = () => {
       <SearchComponent isMobile={isMobile} />
       <div className="w-1/6 flex items-center justify-center">
         <Link to="/cart">
-          <FaShoppingCart style={{ fontSize: "24px", color: "#FF69B4" }} />
+          <FaShoppingCart style={{ fontSize: "20px", color: "#FF69B4" }} />
         </Link>
         <FaUserCircle
-    style={{ fontSize: "28px", color: "#4a4a4a", cursor: "pointer" }}
-    className="ml-5"
-    onClick={handleProfileToggle}
-  />
+          style={{ fontSize: "24px", color: "#4a4a4a", cursor: "pointer" }}
+          className="ml-3 sm:ml-5"
+          onClick={handleProfileToggle}
+        />
       </div>
       {showProfile && <UserProfile handleClose={handleProfileToggle} />}
     </div>
